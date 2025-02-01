@@ -1,0 +1,39 @@
+name: Update Homebrew Formula
+
+on:
+  repository_dispatch:
+    types: [update-homebrew]  # Listens for the trigger event
+  workflow_dispatch:  # Allows manual triggering of the workflow
+    inputs:
+      manual_trigger:
+        description: "Manually trigger Homebrew update"
+        required: false
+        default: "true"
+
+jobs:
+  update-formula:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Homebrew
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+      - name: Update Python Resources
+        run: |
+          brew install python@3.12
+          brew update-python-resources Formula/netlas.rb
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add Formula/netlas.rb
+          git commit -m "Update Homebrew formula for release ${{ github.event.client_payload.tag || 'manual run' }}"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
