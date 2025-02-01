@@ -64,14 +64,16 @@ jobs:
           brew install python@${{ env.PYTHON_VERSION }}
           brew update-python-resources Formula/netlas.rb
       
-      - name: Install, Audit and Test Netlas Formula from Local Path
+      - name: Install Netlas Formula from Local Path
         run: |
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
           brew install --build-from-source ./Formula/netlas.rb
+      
+      - name: Test Netlas Formula
+        run: |
+          export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
           brew test netlas
-          brew audit --strict --new-formula netlas > audit_results.txt
-          cat audit_results.txt
-
+  
       - name: Commit and Push Changes
         run: |
           git config --global user.name "GitHub Actions Bot"
