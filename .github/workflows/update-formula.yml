@@ -68,9 +68,9 @@ jobs:
         run: |
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
           brew install --build-from-source ./Formula/netlas.rb
+          brew test netlas
           brew audit --strict --new-formula netlas > audit_results.txt
           cat audit_results.txt
-          brew test netlas
 
       - name: Commit and Push Changes
         run: |
