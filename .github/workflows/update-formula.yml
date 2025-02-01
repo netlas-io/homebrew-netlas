@@ -22,7 +22,7 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
           echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile
-          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          echo "PATH=$PATH" >> $GITHUB_ENV
 
       - name: Verify Homebrew Installation
         run: |
@@ -66,6 +66,7 @@ jobs:
       
       - name: Install, Audit and Test Netlas Formula from Local Path
         run: |
+          export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
           brew install --build-from-source ./Formula/netlas.rb
           brew audit --strict --new-formula netlas > audit_results.txt
           cat audit_results.txt
