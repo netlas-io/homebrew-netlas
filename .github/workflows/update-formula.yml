@@ -21,10 +21,17 @@ jobs:
         run: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
+          echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+      - name: Verify Homebrew Installation
+        run: |
+          export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+          brew --version
 
       - name: Update Python Resources
         run: |
+          export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
           brew install python@3.12
           brew update-python-resources Formula/netlas.rb
 
