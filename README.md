@@ -4,8 +4,6 @@ This repository provides a **Homebrew tap** for installing the [Netlas CLI](http
 
 **Important:** The following instructions will install the Netlas CLI tool, but not the SDK. This means you will be able to execute Bash commands but **not** import the Netlas package in Python code. Refer to the [documentation](https://docs.netlas.io/automation/) for details on using the SDK.
 
-For more details, visit the **[Netlas SDK repository](https://github.com/netlas-io/netlas-python)**.
-
 **Homebrew** is a convenient package manager for Linux and macOS. Visit the [official website](https://brew.sh) for installation instructions and more details about Homebrew.
 
 ## Installation
