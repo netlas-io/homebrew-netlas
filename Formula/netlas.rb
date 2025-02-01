@@ -79,6 +79,6 @@ class Netlas < Formula
   end
 
   test do
-    system "bin/netlas", "--help"
+    assert_match "Usage:", shell_output("#{bin}/netlas --help")
   end
 end
