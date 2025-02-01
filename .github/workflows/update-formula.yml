@@ -34,14 +34,18 @@ jobs:
         run: |
           LATEST_VERSION=$(curl -s https://pypi.org/pypi/netlas/json | jq -r '.info.version')
           echo "LATEST_VERSION=$LATEST_VERSION" >> $GITHUB_ENV
-
-      - name: Get SHA256 for Latest Version
-        id: get_sha
+          echo ${{ env.LATEST_VERSION }}
+      
+      - name: Get Source URL from PyPI
+        id: get_source_url
         run: |
-          URL="https://files.pythonhosted.org/packages/source/n/netlas/netlas-${{ env.LATEST_VERSION }}.tar.gz"
-          SHA256=$(curl -sL $URL | sha256sum | cut -d ' ' -f 1)
+          PYPI_JSON=$(curl -s https://pypi.org/pypi/netlas/json)
+          SOURCE_URL=$(echo "$PYPI_JSON" | jq -r '.urls[] | select(.packagetype == "sdist") | .url')
+          SHA256=$(curl -sL $SOURCE_URL | sha256sum | cut -d ' ' -f 1)
+          echo "SOURCE_URL=$SOURCE_URL" >> $GITHUB_ENV
+          echo ${{ env.SOURCE_URL }}
           echo "SHA256=$SHA256" >> $GITHUB_ENV
-          echo "DOWNLOAD_URL=$URL" >> $GITHUB_ENV
+          echo ${{ env.SHA256 }}
 
       - name: Extract Python Version from Formula
         id: get_python_version
@@ -51,7 +55,7 @@ jobs:
 
       - name: Update Homebrew Formula
         run: |
-          sed -i "s|url \".*\"|url \"${{ env.DOWNLOAD_URL }}\"|" Formula/netlas.rb
+          sed -i "s|url \".*\"|url \"${{ env.SOURCE_URL }}\"|" Formula/netlas.rb
           sed -i "s|sha256 \".*\"|sha256 \"${{ env.SHA256 }}\"|" Formula/netlas.rb
 
       - name: Update Python Resources

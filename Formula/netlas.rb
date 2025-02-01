@@ -4,9 +4,10 @@ class Netlas < Formula
   homepage "https://netlas.io"
   url "https://files.pythonhosted.org/packages/source/n/netlas/netlas-0.6.2.tar.gz"
   sha256 "011e906b2f7076b9f4bd62e7af065178f3132a851f886e5480a375463ac5928f"
-  license "MIT License. Copyright (c) 2025 Netlas.io"
+  license "MIT"
 
   depends_on "python@3.12"
+  depends_on "libyaml"
 
   resource "appdirs" do
     url "https://files.pythonhosted.org/packages/d7/d8/05696357e0311f5b5c316d7b95f46c669dd9c15aaeecbb48c7d0aeb88c40/appdirs-1.4.4.tar.gz"
@@ -74,9 +75,9 @@ class Netlas < Formula
   end
 
   def install
-    virtualenv_install_with_resources 
+    virtualenv_install_with_resources
   end
-    
+
   test do
     system "bin/netlas", "--help"
   end
