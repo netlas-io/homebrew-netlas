@@ -1,23 +1,19 @@
 # Homebrew Tap for Netlas CLI
 
-This repository provides a **Homebrew tap** for installing the [Netlas CLI](https://github.com/netlas-io/netlas-python) on macOS and Linux. The Netlas CLI is a powerful tool for interacting with the Netlas platform from the command line. It is built on top of the [Netlas Python SDK](https://github.com/netlas-io/netlas-python).
+This repository provides a **Homebrew tap** for installing the [Netlas CLI](https://github.com/netlas-io/netlas-python) on macOS and Linux. 
 
-**Important:** The following instructions will install the Netlas CLI tool, but not the SDK. This means you will be able to execute Bash commands but **not** import the Netlas package in Python code. Refer to the [documentation](https://docs.netlas.io/automation/) for details on using the SDK.
+The **Netlas CLI** is a powerful tool for interacting with the Netlas platform from the command line. It is built on top of the [Netlas Python SDK](https://github.com/netlas-io/netlas-python). The instructions below install only the Netlas CLI. See the [documentation](https://docs.netlas.io/automation/) for SDK installation and usage.
 
 **Homebrew** is a convenient package manager for Linux and macOS. Visit the [official website](https://brew.sh) for installation instructions and more details about Homebrew.
 
 ## Installation
 
-First, add the Netlas tap:
+Netlas is **not** part of Homebrew Core, so you must first add the custom tap before installing it.   
+Follow these steps:
 
 ```bash
-brew tap netlas-io/netlas
-```
-
-Then, install the Netlas CLI:
-
-```bash
-brew install netlas
+brew tap netlas-io/netlas  # Add the Netlas repository to Homebrew
+brew install netlas  # Install the Netlas CLI
 ```
 
 ## Updating
@@ -25,21 +21,17 @@ brew install netlas
 To update to the latest version:
 
 ```bash
-brew upgrade netlas
+brew update  # Refresh Homebrew and get the latest formulae
+brew upgrade netlas  # Upgrade Netlas to the latest version
 ```
 
 ## Uninstallation
 
-To remove the Netlas CLI:
+To completely remove the Netlas CLI and its Homebrew tap, run:
 
 ```bash
-brew uninstall netlas
-```
-
-To remove the tap completely:
-
-```bash
-brew untap netlas-io/netlas
+brew uninstall netlas  # Uninstalls the Netlas CLI
+brew untap netlas-io/netlas  # Removes the Netlas tap
 ```
 
 ## Contributing
