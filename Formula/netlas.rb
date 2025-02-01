@@ -6,8 +6,8 @@ class Netlas < Formula
   sha256 "011e906b2f7076b9f4bd62e7af065178f3132a851f886e5480a375463ac5928f"
   license "MIT"
 
-  depends_on "python@3.12"
   depends_on "libyaml"
+  depends_on "python@3.12"
 
   resource "appdirs" do
     url "https://files.pythonhosted.org/packages/d7/d8/05696357e0311f5b5c316d7b95f46c669dd9c15aaeecbb48c7d0aeb88c40/appdirs-1.4.4.tar.gz"
