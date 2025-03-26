@@ -2,8 +2,8 @@ class Netlas < Formula
   include Language::Python::Virtualenv
   desc "CLI tool for Netlas.io"
   homepage "https://netlas.io"
-  url "https://files.pythonhosted.org/packages/ad/45/97e9aa303058348cc1db4b806640b8692e3f9ed55a8a9a7807830f875bbb/netlas-0.6.2.tar.gz"
-  sha256 "011e906b2f7076b9f4bd62e7af065178f3132a851f886e5480a375463ac5928f"
+  url "https://files.pythonhosted.org/packages/b1/9b/0d438cc28c70a5fafc51ae6b4dbc2922c052244ef30f323daed2bcab0016/netlas-0.7.0.tar.gz"
+  sha256 "667fbe2136eb1b72cdb467fa9014d6650fec3aafc0a5efdffedc97430d0fb2fc"
   license "MIT"
 
   depends_on "libyaml"
