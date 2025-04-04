@@ -2,8 +2,8 @@ class Netlas < Formula
   include Language::Python::Virtualenv
   desc "CLI tool for Netlas.io"
   homepage "https://netlas.io"
-  url "https://files.pythonhosted.org/packages/47/5a/842ba273a5ee4b736ec56905933ba1bc926cd9864cb8879d56fbe5201737/netlas-0.7.1.tar.gz"
-  sha256 "914a02434a07a3869912cbdb389d829c71972cfb649595055047102716a2986d"
+  url "https://files.pythonhosted.org/packages/be/fc/c4db99c6f0ac9e479eb6acae68c76406c06a38f72046ca27e6a93b5daff0/netlas-0.7.2.tar.gz"
+  sha256 "1fe3f9307948ec91c0c87d23e11e7f4d15a7633fce54438405721669816ba137"
   license "MIT"
 
   depends_on "libyaml"
@@ -60,8 +60,8 @@ class Netlas < Formula
   end
 
   resource "rich" do
-    url "https://files.pythonhosted.org/packages/ab/3a/0316b28d0761c6734d6bc14e770d85506c986c85ffb239e688eeaab2c2bc/rich-13.9.4.tar.gz"
-    sha256 "439594978a49a09530cff7ebc4b5c7103ef57baf48d5ea3184f21d9a2befa098"
+    url "https://files.pythonhosted.org/packages/a1/53/830aa4c3066a8ab0ae9a9955976fb770fe9c6102117c8ec4ab3ea62d89e8/rich-14.0.0.tar.gz"
+    sha256 "82f1bc23a6a21ebca4ae0c45af9bdbc492ed20231dcb63f297d6d1021a9d5725"
   end
 
   resource "tqdm" do
