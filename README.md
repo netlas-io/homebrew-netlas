@@ -2,7 +2,7 @@
 
 This repository provides a **Homebrew tap** for installing the [Netlas CLI](https://github.com/netlas-io/netlas-python) on macOS and Linux. 
 
-The **Netlas CLI** is a powerful tool for interacting with the Netlas platform from the command line. It is built on top of the [Netlas Python SDK](https://github.com/netlas-io/netlas-python). The instructions below install only the Netlas CLI. See the [documentation](https://docs.netlas.io/automation/) for SDK installation and usage.
+The **Netlas CLI** is a powerful tool for interacting with the Netlas platform from the command line. It is built on top of the [Netlas Python SDK](https://github.com/netlas-io/netlas-python). The instructions below install only the Netlas CLI. See the [documentation](https://docs.netlas.io/api-reference/) for SDK installation and usage.
 
 **Homebrew** is a convenient package manager for Linux and macOS. Visit the [official website](https://brew.sh) for installation instructions and more details about Homebrew.
 
