@@ -61,7 +61,7 @@ jobs:
       - name: Create local TAP
         run: |
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-          TAP="${GITH_ACTOR}/netlas"
+          TAP="${GITHUB_ACTOR}/netlas"
           brew tap-new "$TAP"
           TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
           mkdir -p "$TAP_DIR/Formula"
