@@ -57,7 +57,16 @@ jobs:
         run: |
           sed -i "s|url \".*\"|url \"${{ env.SOURCE_URL }}\"|" Formula/netlas.rb
           sed -i "s|sha256 \".*\"|sha256 \"${{ env.SHA256 }}\"|" Formula/netlas.rb
-
+      
+      - name: Create local TAP
+        run: |
+          export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+          TAP="${GITH_ACTOR}/netlas"
+          brew tap-new "$TAP"
+          TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
+          mkdir -p "$TAP_DIR/Formula"
+          cp ./Formula/netlas.rb "$TAP_DIR/Formula"
+      
       - name: Update Python Resources
         run: |
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
