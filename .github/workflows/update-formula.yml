@@ -83,7 +83,7 @@ jobs:
         run: |
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
           TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
-          brew install --build-from-source "$TAP_DIR/Formula/netlas.rb"
+          brew install --build-from-source "${GITHUB_ACTOR}/netlas/netlas"
       
       - name: Test Netlas Formula
         run: |
