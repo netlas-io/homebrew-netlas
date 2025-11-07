@@ -62,15 +62,8 @@ jobs:
         run: |  
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
-
-      - name: Update Python Resources
-        run: |
-          export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-          TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
-          brew install python@${{ env.PYTHON_VERSION }}
-          brew update-python-resources "$TAP_DIR/Formula/netlas.rb"
-
-      - name: Create local TAP
+ 
+      - name: Create local TAP and copy formula
         run: |
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
           TAP="${GITHUB_ACTOR}/netlas"
@@ -78,18 +71,32 @@ jobs:
           TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
           mkdir -p "$TAP_DIR/Formula"
           cp ./Formula/netlas.rb "$TAP_DIR/Formula"
-      
-      - name: Install Netlas Formula from Local TAP
+
+      - name: Install Python and update resources
         run: |
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
           TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
-          brew install --build-from-source "${GITHUB_ACTOR}/netlas/netlas"
-      
+          brew install python@${{ env.PYTHON_VERSION }}
+          brew update-python-resources "$TAP_DIR/Formula/netlas.rb"
+
+      - name: Tap local formula
+        run: |
+          export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+          TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
+          TAP="${GITHUB_ACTOR}/netlas"
+          brew tap "$TAP" "$TAP_DIR"
+
+      - name: Install Netlas Formula from TAP
+        run: |
+          export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+          TAP="${GITHUB_ACTOR}/netlas"
+          brew install --build-from-source "$TAP/netlas"
+
       - name: Test Netlas Formula
         run: |
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
           brew test netlas
-  
+
       - name: Commit and Push Changes
         run: |
           git add Formula/netlas.rb
