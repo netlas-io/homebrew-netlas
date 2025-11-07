@@ -63,6 +63,12 @@ jobs:
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
 
+      - name: Update Python Resources
+        run: |
+          export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+          brew install python@${{ env.PYTHON_VERSION }}
+          brew update-python-resources Formula/netlas.rb
+
       - name: Create local TAP
         run: |
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
@@ -70,14 +76,7 @@ jobs:
           brew tap-new "$TAP"
           TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
           mkdir -p "$TAP_DIR/Formula"
-          cp ./Formula/netlas.rb "$TAP_DIR/Formula"
-      
-      - name: Update Python Resources
-        run: |
-          export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-          TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
-          brew install python@${{ env.PYTHON_VERSION }}
-          brew update-python-resources "$TAP_DIR/Formula/netlas.rb"
+          cp ./Formula/netlas.rb "$TAP_DIR/Formula" 
       
       - name: Install Netlas Formula from Local TAP
         run: |
