@@ -73,7 +73,8 @@ jobs:
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
           TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
           brew install python@${{ env.PYTHON_VERSION }}
-          # brew update-python-resources "$TAP_DIR/Formula/netlas.rb"
+          brew update-python-resources "$TAP_DIR/Formula/netlas.rb"
+          cp "$TAP_DIR/Formula/netlas.rb" Formula/netlas.rb
 
       - name: Install Netlas Formula from TAP
         run: |
