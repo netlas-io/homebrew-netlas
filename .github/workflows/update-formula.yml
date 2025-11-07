@@ -66,11 +66,7 @@ jobs:
       - name: Create local TAP and copy formula
         run: |
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-          TAP="${GITHUB_ACTOR}/netlas"
-          brew tap-new "$TAP"
-          TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
-          mkdir -p "$TAP_DIR/Formula"
-          cp ./Formula/netlas.rb "$TAP_DIR/Formula"
+          brew tap netlas-io/netlas
 
       - name: Install Python and update resources
         run: |
