@@ -79,10 +79,6 @@ jobs:
         run: |
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
           TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
-      
-      - name: Show formula before update
-        run: |
-          TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
           echo "=== Contents of netlas.rb before update ==="
           cat "$TAP_DIR/Formula/netlas.rb"
           echo "==========================================="
