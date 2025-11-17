@@ -58,7 +58,6 @@ jobs:
           sed -i "s|url \".*\"|url \"${{ env.SOURCE_URL }}\"|" Formula/netlas.rb
           sed -i "s|sha256 \".*\"|sha256 \"${{ env.SHA256 }}\"|" Formula/netlas.rb
       
-
       - name: Show local formula 
         run: |
           echo "======= Formula/netlas.rb"
@@ -75,17 +74,12 @@ jobs:
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
           brew tap netlas-io/netlas
 
-      - name: Create TAP dir
+      - name: Install Python and update resources
         run: |
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
           TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
-          echo "=== Contents of netlas.rb before update ==="
-          cat "$TAP_DIR/Formula/netlas.rb"
-          echo "==========================================="
-
-      - name: Instal Python and Update dependencies
-        run: |
           brew install python@${{ env.PYTHON_VERSION }}
+          cp Formula/netlas.rb "$TAP_DIR/Formula/netlas.rb"
           brew update-python-resources "$TAP_DIR/Formula/netlas.rb"
           cp "$TAP_DIR/Formula/netlas.rb" Formula/netlas.rb
 
