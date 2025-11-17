@@ -58,11 +58,25 @@ jobs:
           sed -i "s|url \".*\"|url \"${{ env.SOURCE_URL }}\"|" Formula/netlas.rb
           sed -i "s|sha256 \".*\"|sha256 \"${{ env.SHA256 }}\"|" Formula/netlas.rb
       
+
+      - name: Show local formula 
+        run: |
+          echo "======= Formula/netlas.rb"
+          cat Formula/netlas.rb
+          echo "======="
+
       - name: Git config  # Pre-step for TAP creating  
         run: |  
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
  
+      - name: Show formula before update
+        run: |
+          TAP_DIR="$(brew --repository)/Library/Taps/${GITHUB_ACTOR}/homebrew-netlas"
+          echo "=== Contents of netlas.rb before update ==="
+          cat "$TAP_DIR/Formula/netlas.rb"
+          echo "==========================================="
+
       - name: Create local TAP and copy formula
         run: |
           export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
